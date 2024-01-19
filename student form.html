@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>student form</title>
+    <style>
+        body {
+            color: white;
+            font-family: sans-serif;
+            font-variant: small-caps;
+            background-color: rgba(128, 128, 128, 0.5);
+        }
+
+        table,
+        th,
+        td {
+            border: 2px solid rgba(238, 230, 230, 0.479);
+            border-collapse: collapse;
+            border-spacing: 0;
+            padding: 5px;
+        }
+
+        #create td {
+            text-align: center;
+            border-color: 2px solid rgba(238, 230, 230, 0.479);
+        }
+
+        .delbtn {
+            background-color: mediumseagreen;
+            color: white;
+            border: 2px solid black;
+            border-radius: 3px;
+            padding: 2px 7px;
+        }
+
+        .delbtn:hover {
+            color: white;
+        }
+
+        .savebtn {
+            border: none;
+            background-color: mediumseagreen;
+            padding: 5px 180px;
+            border: 2px solid black;
+            border-radius: 5px;
+            font-size: large;
+            color: white;
+        }
+
+        .savebtn:hover {
+            background-color: aqua;
+            color: black;
+        }
+
+        fieldset {
+            background-color: rgb(34, 34, 36);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        #list-data:hover td {
+            background-color: aqua;
+            color: black;
+            border: 2px solid black;
+        }
+
+        #list-data:hover .delbtn {
+            background-color: red;
+            border: 2px solid black;
+        }
+
+        legend {
+            background-color: mediumseagreen;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid black;
+            font-weight: bolder;
+        }
+
+        #list-mail {
+            font-style: italic;
+            font-variant: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form method="post" action="">
+        <fieldset>
+            <legend>STUDENT FORM</legend>
+            <br />
+            <table id="input-table">
+                <tr>
+                    <th><label for="name">Name</label></th>
+                    <td>
+                        <input id="name" type="text" placeholder="enter your full name" size="25" maxlength="20">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="age">Age</label></th>
+                    <td>
+                        <input id="age" type="number" min="12" max="28">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>
+                        <input type="radio" id="male" name="gender" class="gender" value="male">
+                        <label for="male">Male
+                        </label>
+
+                        <input type="radio" id="female" name="gender" class="gender" value="female">
+                        <label for="female">female
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="course">Course</label></th>
+                    <td>
+                        <select id="course">
+                            <optgroup label="front-end">
+                                <option>html</option>
+                                <option>css</option>
+                                <option>Javascript</option>
+                                <option>PYTHON</option>
+                                <option selected></option>
+                            </optgroup>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="email">E-mail</label></th>
+                    <td>
+                        <input id="email" type="email" placeholder="sample@gmail.com">
+                    </td>
+                </tr>
+                <tr>
+                    <th id="savebtn" colspan="2">
+                        <input class="savebtn" type="button" value="Save" onclick="save()" target="_blank">
+                    </th>
+                </tr>
+            </table>
+            <br />
+            <table id="create">
+                <tr>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>GENDER</th>
+                    <th>COURSE</th>
+                    <th>EMAIL</th>
+                    <th>ACTION</th>
+                </tr>
+
+            </table>
+        </fieldset>
+    </form>
+
+    <script>
+        function save() {
+            a1 = document.getElementById("create");
+            b1 = document.getElementById("name");
+            b2 = document.getElementById("age");
+            b3 = document.querySelector("input[name='gender']:checked");
+            if (b3) { b31 = b3.value } else { b31 = "" };
+            b4 = document.getElementById("course");
+            b5 = document.getElementById("email");
+            c1 = document.createElement("tr");
+            a1.append(c1);
+            c1.setAttribute("id", "list-data");
+            d1 = document.createElement("td");
+            d1.textContent = b1.value;
+            c1.append(d1);
+            d2 = document.createElement("td");
+            d2.textContent = b2.value;
+            c1.append(d2);
+            d3 = document.createElement("td");
+            d3.textContent = b31;
+            c1.append(d3);
+            d4 = document.createElement("td");
+            d4.textContent = b4.value;
+            c1.append(d4);
+            d5 = document.createElement("td");
+            d5.textContent = b5.value;
+            c1.append(d5);
+            d5.setAttribute("id", "list-mail");
+            d6 = document.createElement("td");
+            d7 = document.createElement("button");
+            d7.textContent = "Delete";
+            d7.setAttribute("onclick", "delet(event)");
+            d7.setAttribute("class", "delbtn");
+            d6.append(d7)
+            c1.append(d6);
+            b1.value = "";
+            b2.value = "";
+            b4.value = "";
+            b5.value = "";
+            b3.checked = false;
+        }
+        function delet(event) {
+            event.target.parentElement.parentElement.remove();
+        }
+    </script>
+
+</body>
+
+</html>
